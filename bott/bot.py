@@ -11,8 +11,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Start command"""
-    await update.message.reply_text("Hey Welcome!!")
+    """Start command for Orthopia Bot"""
+    await update.message.reply_text(
+        "Welcome to Orthopia! 🌟\n\nOrthopia is a platform combining the cultural and spiritual essence of Orthodox Tewahedo and Ethiopian traditions. "
+        "Feel free to explore features, share posts, and engage with the community."
+    )
 
 
 async def bot_tele(text):
