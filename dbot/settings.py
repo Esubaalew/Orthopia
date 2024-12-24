@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-dvhexv@s$hd+kdxnq08$--3v5gh-9=@k)a-jg!j!%cm7fq85zy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".koyeb.app"]
+ALLOWED_HOSTS = [".onrender.com", "localhost",]
 
 
 # Application definition
