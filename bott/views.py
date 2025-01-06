@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from .bot import bot_tele
-from .models import User, Post
-from .serializers import UserSerializer, PostSerializer
+from .models import User, Post, Reaction, Comment
+from .serializers import UserSerializer, PostSerializer, ReactionSerializer, CommentSerializer
 from rest_framework import viewsets
 
 logger = logging.getLogger(__name__)
@@ -39,3 +39,11 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+
+class ReactionViewSet(viewsets.ModelViewSet):
+    queryset = Reaction.objects.all()
+    serializer_class = ReactionSerializer
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
