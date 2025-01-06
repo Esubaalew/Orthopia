@@ -42,3 +42,35 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+
+class Reaction(models.Model):
+    REACTION_CHOICES = [
+        ('like', 'Like'),
+        ('dislike', 'Dislike'),
+        ('love', 'Love'),
+        ('laugh', 'Laugh'),
+        ('sad', 'Sad'),
+        ('angry', 'Angry'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name="Post")
+    type = models.CharField(max_length=10, choices=REACTION_CHOICES, verbose_name="Reaction Type")
+
+    class Meta:
+        unique_together = ('user', 'post', 'type')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.type} on {self.post.title}"
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments", verbose_name="Post")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
+    content = models.TextField(verbose_name="Comment Content")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Date Created")
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Comment by {self.user.username} on {self.post.title}"
